@@ -1,0 +1,268 @@
+@use "source.scss";
+
+html {
+    font-size: 14px;
+}
+
+div {
+    display: flex;
+    align-items: flex-end;
+
+    .leftSide {
+        width: 36rem;
+        height: 50rem;
+        background: source.$pokered;
+        border: 0.25rem solid source.$pokeborder;
+        border-radius: 0.5rem 0 0 0.5rem;
+        justify-content: flex-end;
+
+        .topButtons {
+            padding: 1.5rem;
+            margin-right: auto;
+            align-self: flex-start;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            
+            .blueButton {
+                width: 5rem;
+                height: 5rem;
+                border-radius: 50%;
+                background: #0ebdd2;
+                box-shadow: 0 0 0 0.25rem source.$pokeborder, 0 0 0 0.85rem #fff, 0 0 0 1.1rem source.$pokeborder;
+
+                .lighterBlue {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    border-radius: 50%;
+                    background: #82f3ff;
+                    margin: 0 0 1.2rem 1.2rem;
+                }
+
+                .highlightBlue {
+                    position: absolute;
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 50%;
+                    background: #fff;
+                    margin: 0 0 2.9rem 2.9rem;
+                }
+            }
+
+            .redButton {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                background: source.$pokeredbtn;
+                box-shadow: 0 0 0 0.25rem source.$pokeborder;
+                transform: translate(0, -0.5rem);
+
+                .lighterRed {
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 50%;
+                    background: #f64862;
+                    margin: 0 0 0.4rem 0.4rem;
+                }
+
+                .highlightRed {
+                    position: absolute;
+                    width: 0.3rem;
+                    height: 0.3rem;
+                    border-radius: 50%;
+                    background: #fff;
+                    margin: 0 0 0.9rem 0.9rem;
+                }
+            }
+
+            .yellowButton {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                background: source.$pokeyellowbtn;
+                box-shadow: 0 0 0 0.25rem source.$pokeborder;
+                transform: translate(0, -0.5rem);
+
+                .lighterYellow {
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 50%;
+                    background: #f5dc4e;
+                    margin: 0 0 0.4rem 0.4rem;
+                }
+
+                .highlightYellow {
+                    position: absolute;
+                    width: 0.3rem;
+                    height: 0.3rem;
+                    border-radius: 50%;
+                    background: #fff;
+                    margin: 0 0 0.9rem 0.9rem;
+                }
+            }
+
+            .greenButton {
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                background: source.$pokegreenbtn;
+                box-shadow: 0 0 0 0.25rem source.$pokeborder;
+                transform: translate(0, -0.5rem);
+
+                .lighterGreen {
+                    width: 1rem;
+                    height: 1rem;
+                    border-radius: 50%;
+                    background: #85ca40;
+                    margin: 0 0 0.4rem 0.4rem;
+                }
+
+                .highlightGreen {
+                    position: absolute;
+                    width: 0.3rem;
+                    height: 0.3rem;
+                    border-radius: 50%;
+                    background: #fff;
+                    margin: 0 0 0.9rem 0.9rem;
+                }
+            }
+        }
+        
+        .hinge {
+            width: 5rem;
+            height: 45rem;
+            background: source.$pokered;
+            border: 0.25rem solid source.$pokeborder;
+            border-right: none;
+            border-bottom: none;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .shadow {
+                position: absolute;
+                width: 0.5rem;
+                height: 45rem;
+                background: source.$pokeshadow;
+            }
+
+            .cut1 {
+                width: 5rem;
+                height: 0.25rem;
+                background: source.$pokeborder;
+                margin-top: 6rem;
+                box-shadow: 0 0.2rem source.$pokelight;
+            }
+
+            .cut2 {
+                width: 5rem;
+                height: 0.25rem;
+                background: source.$pokeborder;
+                margin-bottom: 6rem;
+                box-shadow: 0 0.2rem source.$pokelight;
+            }
+        }
+
+        .topLine {
+            position: absolute;
+            margin-bottom: 45rem;
+            width: 14rem;
+            height: 0.25rem;
+            background: source.$pokeborder;
+        }
+
+        .midLine {
+            position: absolute;
+            margin-right: 13.3rem;
+            margin-bottom: 42.85rem;
+            width: 8rem;
+            height: 0.25rem;
+            background: source.$pokeborder;
+            transform: rotate(147.5deg);
+        }
+
+        .bottomLine {
+            position: absolute;
+            margin-right: 20.6rem;
+            margin-bottom: 40.7rem;
+            width: 15.5rem;
+            height: 0.25rem;
+            background: source.$pokeborder;
+        }
+
+        .whiteFrame {
+            margin-right: 10rem;
+            margin-bottom: 7rem;
+            align-self: center;
+            position: absolute;
+            width: 20rem;
+            height: 17rem;
+            background: #fff;
+            box-shadow: 0 0 0 0.25rem source.$pokeborder;
+
+            .frameCut {
+                width: 5.5rem;
+                height: 3rem;
+                background: source.$pokered;
+                transform: rotate(55deg) translate(-1.13rem, 2.32rem);
+                border-top: 0.25rem solid source.$pokeborder;
+            }
+        }
+    }
+
+    .rightSide {
+        width: 30rem;
+        height: 45rem;
+        background: source.$pokered;
+        border: 0.25rem solid source.$pokeborder;
+        border-radius: 0 0.5rem 0.5rem 0;
+        border-left: none;
+
+        .dropLine {
+            position: absolute;
+            margin-left: 8rem;
+            margin-bottom: 42.85rem;
+            width: 8rem;
+            height: 0.25rem;
+            background: source.$pokeborder;
+            transform: rotate(-147.5deg);
+        }
+
+        .straightLine {
+            position: absolute;
+            margin-left: 15.34rem;
+            margin-bottom: 40.7rem;
+            width: 14.7rem;
+            height: 0.25rem;
+            background: source.$pokeborder;
+        }
+    }
+
+    .cuts {
+        position: absolute;
+        width: 66.75rem;
+        height: 50.5rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .cutDrop {
+            margin-right: 11.514rem;
+            margin-bottom: 44.65rem;
+            width: 8rem;
+            height: 10rem;
+            background: source.$pokebg;
+            transform: rotate(-147.5deg);
+        }
+
+        .cutStraight {
+            position: absolute;
+            margin-bottom: 41.9rem;
+            width: 14.82rem;
+            height: 10rem;
+            background: source.$pokebg;
+        }
+    }
+}
