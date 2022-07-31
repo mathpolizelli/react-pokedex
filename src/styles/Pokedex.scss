@@ -194,20 +194,201 @@ div {
 
         .whiteFrame {
             margin-right: 10rem;
-            margin-bottom: 7rem;
+            margin-bottom: 6rem;
             align-self: center;
             position: absolute;
-            width: 20rem;
-            height: 17rem;
+            width: 22rem;
+            height: 19rem;
             background: #fff;
             box-shadow: 0 0 0 0.25rem source.$pokeborder;
+            border-radius: 0.2rem;
 
             .frameCut {
+                position: absolute;
                 width: 5.5rem;
                 height: 3rem;
                 background: source.$pokered;
                 transform: rotate(55deg) translate(-1.13rem, 2.32rem);
                 border-top: 0.25rem solid source.$pokeborder;
+            }
+
+            .screenElements {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .topLights {
+                    margin-top: 0.8rem;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    gap: 2rem;
+
+                    .smallRedLight {
+                        width: 0.4rem;
+                        height: 0.4rem;
+                        background: source.$pokeredbtn;
+                        border-radius: 50%;
+                        border: 0.2rem solid source.$pokeborder;
+                    }
+                }
+
+                .mainScreen {
+                    margin-top: 0.8rem;
+                    width: 16.5rem;
+                    height: 12rem;
+                    background: source.$pokeblack;
+                    border-radius: 0.4rem;
+                }
+
+                .bottomStuff {
+                    margin-top: 1.2rem;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 11rem;
+
+                    .bigRedLight {
+                        margin-top: 0.2rem;
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        background: source.$pokeredbtn;
+                        border-radius: 50%;
+                        border: 0.25rem solid source.$pokeborder;
+                    }
+
+                    .speaker {
+                        width: 3.5rem;
+                        height: 0.3rem;
+                        border-radius: 0.3rem;
+                        background: source.$pokeblack;
+                        box-shadow: 0 0.3rem 0 #fff, 0 0.6rem 0 source.$pokeblack, 0 0.9rem 0 #fff, 0 1.2rem 0 source.$pokeblack, 0 -0.3rem 0 #fff, 0 -0.6rem 0 source.$pokeblack;
+                        transform: translate(0, -0.2rem);
+                    }
+                }
+            }
+        }
+
+        .leftSideBottom {
+            position: absolute;
+            width: 34rem;
+            height: 14rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .joystick {
+                margin-top: 1.5rem;
+                width: 4rem;
+                height: 4rem;
+                border-radius: 50%;
+                background: source.$pokegray;
+                border: 0.3rem solid source.$pokeblack;
+            }
+
+            .leftSideBottomCenter {
+                width: 12rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: space-between;
+
+                .thinButtons {
+                    .thinButtonRed {
+                        width: 3.7rem;
+                        height: 0.7rem;
+                        background: source.$pokered;
+                        border-radius: 2rem;
+                        border: 0.25rem solid source.$pokeborder;
+                    }
+
+                    .thinButtonBlue {
+                        margin-left: 1rem;
+                        width: 3.7rem;
+                        height: 0.7rem;
+                        background: source.$pokebluebtn;
+                        border-radius: 2rem;
+                        border: 0.25rem solid source.$pokeborder;
+                    }
+                }
+
+                .greenScreen {
+                    margin: 3rem 0 0 2rem;
+                    width: 8.5rem;
+                    height: 5rem;
+                    background: source.$pokegreenscreen;
+                    border-radius: 0.6rem;
+                    border: 0.25rem solid source.$pokeborder;
+                }
+            }
+
+            .arrows {
+                margin: 0.6rem 0 0 1.3rem;
+                width: 9rem;
+                height: 9rem;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .horizontal {
+                    position: absolute;
+
+                    .leftArrow {
+                        width: 4rem;
+                        height: 2.25rem;
+                        background: source.$pokegray;
+                        border: 0.25rem solid source.$pokeblack;
+                        border-radius: 0.5rem;
+                    }
+
+                    .rightArrow {
+                        width: 4rem;
+                        height: 2.25rem;
+                        background: source.$pokegray;
+                        border: 0.25rem solid source.$pokeblack;
+                        border-radius: 0.5rem;
+                    }
+                }
+                .vertical {
+                    display: flex;
+                    flex-direction: column;
+
+                    .topArrow {
+                        width: 2.25rem;
+                        height: 4rem;
+                        background: source.$pokegray;
+                        border: 0.25rem solid source.$pokeblack;
+                        border-radius: 0.5rem;
+                    }
+
+                    .bottomArrow {
+                        width: 2.25rem;
+                        height: 4rem;
+                        background: source.$pokegray;
+                        border: 0.25rem solid source.$pokeblack;
+                        border-radius: 0.5rem;
+                    }
+                }
+
+                .center {
+                    position: absolute;
+                    width: 2.75rem;
+                    height: 2.75rem;
+                    background: source.$pokegray;
+
+                    .centerCircle {
+                        margin: auto;
+                        width: 1rem;
+                        height: 1rem;
+                        border-radius: 50%;
+                        background: source.$pokegray;
+                        border: 0.25rem solid source.$pokeblack;
+                    }
+                }
             }
         }
     }
@@ -237,6 +418,118 @@ div {
             width: 14.7rem;
             height: 0.25rem;
             background: source.$pokeborder;
+        }
+
+        .rightSideElements {
+            width: 100%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+
+            .secondaryScreen {
+                position: absolute;
+                width: 20rem;
+                height: 9rem;
+                background: source.$pokeblack;
+                border-radius: 0.5rem;
+            }
+
+            .blueButtons {
+                position: absolute;
+                margin-top: 11rem;
+                width: 20rem;
+                display: flex;
+                flex-wrap: wrap;
+                .blueButton {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    background: source.$pokelightbluebtn;
+                    border: 0.25rem solid source.$pokeblack;
+                }
+            }
+
+            .thinBlackButtons {
+                width: 20rem;
+                margin-top: 19.8rem;
+                display: flex;
+                gap: 0.7rem;
+                justify-content: flex-end;
+
+                .thinBlackButton {
+                    width: 3rem;
+                    height: 0.4rem;
+                    background: source.$pokegray;
+                    border: 0.25rem solid source.$pokeblack;
+                    border-radius: 1rem;
+                }
+            }
+
+            .whiteButtons {
+                position: absolute;
+                width: 20rem;
+                margin-top: 22rem;
+                z-index: 1;
+
+                .leftButton {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    background: #fff;
+                    border: 0.25rem solid source.$pokeblack;
+                    border-radius: 0.5rem 0 0 0.5rem;
+                }
+
+                .rightButton {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    background: #fff;
+                    border: 0.25rem solid source.$pokeblack;
+                    border-radius: 0 0.5rem 0.5rem 0;
+                }
+            }
+
+            .bigYellowButton {
+                margin: 23rem 0 0 15rem;
+                position: absolute;
+                width: 3rem;
+                height: 3rem;
+                border-radius: 50%;
+                background: source.$pokeyellowbtn;
+                border: 0.3rem solid source.$pokeborder;
+
+                .lighterYellow {
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 50%;
+                    background: #f5dc4e;
+                    margin: 0 0 0.8rem 0.8rem;
+                }
+
+                .highlightYellow {
+                    position: absolute;
+                    width: 0.6rem;
+                    height: 0.6rem;
+                    border-radius: 50%;
+                    background: #fff;
+                    margin: 0 0 1.8rem 1.8rem;
+                }
+            }
+
+            .smallScreens {
+                position: absolute;
+                margin-top: 29rem;
+                width: 20rem;
+                display: flex;
+                justify-content: space-between;
+
+                .smallScreen {
+                    width: 9rem;
+                    height: 4rem;
+                    background: source.$pokeblack;
+                    border-radius: 0.5rem;
+                }
+            }
         }
     }
 
