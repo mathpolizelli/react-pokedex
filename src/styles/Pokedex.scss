@@ -1,12 +1,18 @@
 @use "source.scss";
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+@mixin flexbox-mixin($justify, $align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
 
 html {
     font-size: 14px;
 }
 
 div {
-    display: flex;
-    align-items: flex-end;
+    @include flexbox-mixin(flex-start, flex-end);
 
     .leftSide {
         width: 36rem;
@@ -20,16 +26,15 @@ div {
             padding: 1.5rem;
             margin-right: auto;
             align-self: flex-start;
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
+            @include flexbox-mixin(flex-start, flex-start);
+            gap: 1.75rem;
             
             .blueButton {
                 width: 5rem;
                 height: 5rem;
-                border-radius: 50%;
                 background: #0ebdd2;
                 box-shadow: 0 0 0 0.25rem source.$pokeborder, 0 0 0 0.85rem #fff, 0 0 0 1.1rem source.$pokeborder;
+                border-radius: 50%;
 
                 .lighterBlue {
                     width: 3.5rem;
@@ -52,10 +57,10 @@ div {
             .redButton {
                 width: 1.5rem;
                 height: 1.5rem;
-                border-radius: 50%;
                 background: source.$pokeredbtn;
-                box-shadow: 0 0 0 0.25rem source.$pokeborder;
-                transform: translate(0, -0.5rem);
+                border: solid 0.25rem source.$pokeborder;
+                border-radius: 50%;
+                transform: translate(0, -0.75rem);
 
                 .lighterRed {
                     width: 1rem;
@@ -80,8 +85,8 @@ div {
                 height: 1.5rem;
                 border-radius: 50%;
                 background: source.$pokeyellowbtn;
-                box-shadow: 0 0 0 0.25rem source.$pokeborder;
-                transform: translate(0, -0.5rem);
+                border: solid 0.25rem source.$pokeborder;
+                transform: translate(0, -0.75rem);
 
                 .lighterYellow {
                     width: 1rem;
@@ -106,8 +111,8 @@ div {
                 height: 1.5rem;
                 border-radius: 50%;
                 background: source.$pokegreenbtn;
-                box-shadow: 0 0 0 0.25rem source.$pokeborder;
-                transform: translate(0, -0.5rem);
+                border: solid 0.25rem source.$pokeborder;
+                transform: translate(0, -0.75rem);
 
                 .lighterGreen {
                     width: 1rem;
@@ -136,10 +141,8 @@ div {
             border-right: none;
             border-bottom: none;
 
-            display: flex;
+            @include flexbox-mixin(space-between, flex-start);
             flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-start;
 
             .shadow {
                 position: absolute;
@@ -215,23 +218,21 @@ div {
             .screenElements {
                 width: 100%;
                 height: 100%;
-                display: flex;
+                @include flexbox-mixin(flex-start, center);
                 flex-direction: column;
-                align-items: center;
 
                 .topLights {
                     margin-top: 0.8rem;
                     width: 100%;
-                    display: flex;
-                    justify-content: center;
+                    @include flexbox-mixin(center, flex-start);
                     gap: 2rem;
 
                     .smallRedLight {
                         width: 0.4rem;
                         height: 0.4rem;
                         background: source.$pokeredbtn;
-                        border-radius: 50%;
                         border: 0.2rem solid source.$pokeborder;
+                        border-radius: 50%;
                     }
                 }
 
@@ -239,16 +240,46 @@ div {
                     margin-top: 0.8rem;
                     width: 16.5rem;
                     height: 12rem;
-                    background: source.$pokeblack;
+                    background: linear-gradient(180deg, #81c7d0 0%, #beeff8 100%);
+                    border: 0.25rem solid source.$pokeborder;
                     border-radius: 0.4rem;
+                    @include flexbox-mixin(center, center);
+
+
+                    img {
+                        height: 12rem;
+                        width: auto;
+                        margin: auto;
+                    }
+
+                    div {
+                        width: 17rem;
+                        height: 2rem;
+                        position: absolute;
+                        align-self: flex-end;
+                        background: #202531bb;
+                        transform: translate(0, -0.5rem);
+                        z-index: 1; 
+
+                        a {
+                            margin: auto;
+                            text-transform: capitalize;
+                            font-family: 'Press Start 2P', cursive;
+                            font-size: 0.95rem;
+                            color: #fff;
+                            text-decoration: none;
+                        }
+
+                        a:hover {
+                            text-decoration: underline;
+                        }
+                    }
                 }
 
                 .bottomStuff {
-                    margin-top: 1.2rem;
+                    margin-top: 0.8rem;
                     width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    @include flexbox-mixin(center, center);
                     gap: 11rem;
 
                     .bigRedLight {
@@ -276,9 +307,7 @@ div {
             position: absolute;
             width: 34rem;
             height: 14rem;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
+            @include flexbox-mixin(flex-start, flex-start);
 
             .joystick {
                 margin-top: 1.5rem;
@@ -291,18 +320,22 @@ div {
 
             .leftSideBottomCenter {
                 width: 12rem;
-                display: flex;
+                @include flexbox-mixin(center, space-between);
                 flex-wrap: wrap;
-                justify-content: center;
-                align-items: space-between;
 
                 .thinButtons {
+                    z-index: 1;
+
                     .thinButtonRed {
                         width: 3.7rem;
                         height: 0.7rem;
                         background: source.$pokered;
                         border-radius: 2rem;
                         border: 0.25rem solid source.$pokeborder;
+                    }
+
+                    .thinButtonRed:active {
+                        background: source.$pokeshadow;
                     }
 
                     .thinButtonBlue {
@@ -313,6 +346,10 @@ div {
                         border-radius: 2rem;
                         border: 0.25rem solid source.$pokeborder;
                     }
+
+                    .thinButtonBlue:active {
+                        background: #0d51a4;
+                    }
                 }
 
                 .greenScreen {
@@ -322,6 +359,15 @@ div {
                     background: source.$pokegreenscreen;
                     border-radius: 0.6rem;
                     border: 0.25rem solid source.$pokeborder;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                    justify-content: center;
+
+                    p {
+                        margin: 0 0 0 0.6rem;
+                        font-family: 'Press Start 2P', cursive;
+                        font-size: 0.8rem;
+                    }
                 }
             }
 
@@ -330,11 +376,10 @@ div {
                 width: 9rem;
                 height: 9rem;
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                @include flexbox-mixin(center, center);
 
                 .horizontal {
+                    z-index: 1;
                     position: absolute;
 
                     .leftArrow {
@@ -354,6 +399,7 @@ div {
                     }
                 }
                 .vertical {
+                    z-index: 1;
                     display: flex;
                     flex-direction: column;
 
@@ -374,7 +420,12 @@ div {
                     }
                 }
 
+                .leftArrow:active, .topArrow:active, .rightArrow:active, .bottomArrow:active {
+                    background: source.$pokeblack;
+                }
+
                 .center {
+                    z-index: 1;
                     position: absolute;
                     width: 2.75rem;
                     height: 2.75rem;
@@ -423,9 +474,7 @@ div {
         .rightSideElements {
             width: 100%;
             height: 80%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            @include flexbox-mixin(center, flex-start);
             flex-wrap: wrap;
 
             .secondaryScreen {
@@ -434,28 +483,47 @@ div {
                 height: 9rem;
                 background: source.$pokeblack;
                 border-radius: 0.5rem;
+                display: flex;
+                align-items: flex-start;
+                overflow: hidden;
+                overflow-y: auto;
+                z-index: 1;
+
+                p {
+                    margin: 1rem;
+                    line-height: 115%;
+                    font-family: 'Press Start 2P', cursive;
+                    font-size: 0.9rem;
+                    color: #fff;
+                }
             }
 
             .blueButtons {
+                z-index: 1;
                 position: absolute;
                 margin-top: 11rem;
                 width: 20rem;
                 display: flex;
                 flex-wrap: wrap;
+
                 .blueButton {
                     width: 3.5rem;
                     height: 3.5rem;
                     background: source.$pokelightbluebtn;
                     border: 0.25rem solid source.$pokeblack;
                 }
+
+                .blueButton:active {
+                    background: #4baad3;
+                }
             }
 
             .thinBlackButtons {
+                z-index: 1;
                 width: 20rem;
                 margin-top: 19.8rem;
-                display: flex;
+                @include flexbox-mixin(flex-end, flex-start);
                 gap: 0.7rem;
-                justify-content: flex-end;
 
                 .thinBlackButton {
                     width: 3rem;
@@ -464,13 +532,17 @@ div {
                     border: 0.25rem solid source.$pokeblack;
                     border-radius: 1rem;
                 }
+
+                .thinBlackButton:active {
+                    background: source.$pokeblack;
+                }
             }
 
             .whiteButtons {
+                z-index: 1;
                 position: absolute;
                 width: 20rem;
                 margin-top: 22rem;
-                z-index: 1;
 
                 .leftButton {
                     width: 3.5rem;
@@ -486,6 +558,10 @@ div {
                     background: #fff;
                     border: 0.25rem solid source.$pokeblack;
                     border-radius: 0 0.5rem 0.5rem 0;
+                }
+
+                .leftButton:active, .rightButton:active {
+                    background: #cdcdcd;
                 }
             }
 
@@ -520,14 +596,23 @@ div {
                 position: absolute;
                 margin-top: 29rem;
                 width: 20rem;
-                display: flex;
-                justify-content: space-between;
+                @include flexbox-mixin(space-between, center);
 
                 .smallScreen {
+                    @include flexbox-mixin(center, center);
+                    flex-direction: column;
                     width: 9rem;
                     height: 4rem;
                     background: source.$pokeblack;
                     border-radius: 0.5rem;
+                }
+
+                .smallScreenText {
+                    margin: 0;
+                    text-transform: capitalize;
+                    font-family: 'Press Start 2P', cursive;
+                    font-size: 0.75rem;
+                    color: #fff;  
                 }
             }
         }
@@ -537,9 +622,7 @@ div {
         position: absolute;
         width: 66.75rem;
         height: 50.5rem;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
+        @include flexbox-mixin(flex-end, center);
 
         .cutDrop {
             margin-right: 11.514rem;
@@ -553,9 +636,18 @@ div {
         .cutStraight {
             position: absolute;
             margin-bottom: 41.9rem;
-            width: 14.82rem;
+            width: 14.87rem;
             height: 10rem;
             background: source.$pokebg;
+            transform: translate(0.07rem)
         }
     }
+}
+
+*::-webkit-scrollbar {
+    width: 0rem;
+}
+
+.thinButtonRed, .thinButtonBlue, .horizontal, .vertical, .blueButtons, .thinBlackButton, .leftButton, .rightButton:hover { 
+    cursor: pointer;
 }

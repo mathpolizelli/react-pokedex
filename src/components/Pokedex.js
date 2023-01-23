@@ -1,6 +1,74 @@
+import { useEffect, useState } from 'react';
 import '../styles/Pokedex.scss';
 
 function Pokedex() {
+    const [pokeData, setPokeData] = useState({
+        pokemon: '',
+        id: '',
+        sprite: '',
+        shiny: '',
+        weight: 0,
+        height: 0,
+        previous: '',
+        next: ''
+    })
+    const [flavorText, setFlavorText] = useState([
+        {flavor_text: "Loading", language: {name: "en"}}
+    ])
+    const [pokeNum, setPokeNum] = useState(1)
+    const [isShiny, setIsShiny] = useState(false)
+    let num = 0
+    let isFtxtEng = false
+
+    useEffect(() => {
+        async function fetchData() {
+            const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeNum}`).then((res) => res.json())
+            
+            const prev = data.id != 1 ? await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id - 1}`).then((res) => res.json()) : ''
+            
+            const next = data.id != 905 ? await fetch(`https://pokeapi.co/api/v2/pokemon/${data.id + 1}`).then((res) => res.json()) : ''
+
+            const flavorTxt = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${data.id}/`).then((res) => res.json())
+            
+            setPokeData({
+                pokemon: data.name,
+                id: data.id,
+                sprite: data.sprites.other["official-artwork"].front_default,
+                shiny: data.sprites.other["official-artwork"].front_shiny,
+                weight: data.weight,
+                height: data.height,
+                previous: prev.name,
+                next: next.name
+            })
+            setFlavorText(flavorTxt.flavor_text_entries)
+        }
+        fetchData();
+    }, [pokeNum])
+
+    while (isFtxtEng === false) {
+        if (flavorText[num].language.name === "en") {
+            isFtxtEng = true
+        } else {
+            num ++
+        }
+    }
+
+    let addNum = () => {
+        if (pokeNum <= 904) {
+            setPokeNum(pokeNum + 1)
+        } else {
+            setPokeNum(1)
+        }
+    }
+
+    let subNum = () => {
+        if (pokeNum >= 2) {
+            setPokeNum(pokeNum - 1)
+        } else {
+            setPokeNum(905)
+        }
+    }
+
     return(
         <div>
             <div className="leftSide">
@@ -37,7 +105,12 @@ function Pokedex() {
                             <div className="smallRedLight"></div>
                             <div className="smallRedLight"></div>
                         </div>
-                        <div className="mainScreen"></div>
+                        <div className="mainScreen">
+                            <img src={isShiny == false ? pokeData.sprite : pokeData.shiny}></img>
+                            <div>
+                                <a href={"https://www.pokemon.com/us/pokedex/" + pokeData.pokemon} target="_blank">{pokeData.pokemon} #{pokeData.id}</a>
+                            </div>
+                        </div>
                         <div className="bottomStuff">
                             <div className="bigRedLight"></div>
                             <div className="speaker"></div>
@@ -48,15 +121,18 @@ function Pokedex() {
                     <div className="joystick"></div>
                     <div className="leftSideBottomCenter">
                         <div className="thinButtons">
-                            <div className="thinButtonRed"></div>
-                            <div className="thinButtonBlue"></div>
+                            <div className="thinButtonRed" onClick={() => setIsShiny(false)}></div>
+                            <div className="thinButtonBlue" onClick={() => setIsShiny(true)}></div>
                         </div>
-                        <div className="greenScreen"></div>
+                        <div className="greenScreen">
+                            <p>Height: {pokeData.height / 10}m</p>
+                            <p>Weight: {pokeData.weight / 10}kg</p>
+                        </div>
                     </div>
                     <div className="arrows">
                         <div className="horizontal">
-                            <div className="leftArrow"></div>
-                            <div className="rightArrow"></div>
+                            <div className="leftArrow" onClick={subNum}></div>
+                            <div className="rightArrow" onClick={addNum}></div>
                         </div>
                         <div className="vertical">
                             <div className="topArrow"></div>
@@ -72,7 +148,9 @@ function Pokedex() {
                 <div className="dropLine"></div>
                 <div className="straightLine"></div>
                 <div className="rightSideElements">
-                    <div className="secondaryScreen"></div>
+                    <div className="secondaryScreen">
+                        <p>{flavorText[num].flavor_text.replace('\u000C', ' ')}</p>
+                    </div>
                     <div className="blueButtons">
                         <div className="blueButton"></div>
                         <div className="blueButton"></div>
@@ -98,8 +176,14 @@ function Pokedex() {
                         <div className="highlightYellow"></div>
                     </div>
                     <div className="smallScreens">
-                        <div className="smallScreen"></div>
-                        <div className="smallScreen"></div>
+                        <div className="smallScreen">
+                            <p className="smallScreenText">{pokeData.previous}</p>
+                            <p className="smallScreenText">#{pokeData.id - 1}</p>
+                        </div>
+                        <div className="smallScreen">
+                            <p className="smallScreenText">{pokeData.next}</p>
+                            <p className="smallScreenText">#{pokeData.id + 1}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,6 +191,7 @@ function Pokedex() {
                 <div className="cutDrop"></div>
                 <div className="cutStraight"></div>
             </div>
+            <form></form>
         </div>
     )
 }
