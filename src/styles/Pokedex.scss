@@ -8,11 +8,37 @@
 }
 
 html {
-    font-size: 14px;
+    font-size: 12px;
+    background-color: source.$pokebg;
+}
+
+#container {
+    width: 100vw;
+    @include flexbox-mixin(center, flex-start)
 }
 
 div {
     @include flexbox-mixin(flex-start, flex-end);
+
+    form {
+        position: absolute;
+        z-index: 1;
+        align-self: flex-start;
+
+        .searchBar {
+            width: 29.5rem;
+            height: 4rem;
+            border: none;
+            border-bottom: solid 0.2rem source.$pokeborder;
+            color: source.$pokeborder;
+            margin: 0.5rem 0rem 0rem 37rem;
+            padding-left: 0.5rem;
+            font-size: 20px;
+            font-weight: bold;
+            outline: none;
+            background-color: source.$pokebg;
+        }
+    }
 
     .leftSide {
         width: 36rem;
@@ -648,6 +674,22 @@ div {
     width: 0rem;
 }
 
+::placeholder {
+    color: source.$pokeborder;
+    opacity: 0.5;
+}
+
 .thinButtonRed, .thinButtonBlue, .horizontal, .vertical, .blueButtons, .thinBlackButton, .leftButton, .rightButton:hover { 
     cursor: pointer;
+}
+
+@media (max-width: 768px){
+    html {
+        font-size: 8px;
+    }
+}
+@media (min-width: 1440px){
+    html {
+        font-size: 16px;
+    }
 }
